@@ -16,5 +16,10 @@ public class IAFacile extends Joueur {
     public IAFacile(int numero, ArrayList<CarteNumero> cartesJeu, Plateau plateau) {
         super(numero, cartesJeu, plateau);
     }
+
+    @Override
+    public TourJoueur jeu() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

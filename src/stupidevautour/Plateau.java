@@ -19,7 +19,6 @@ public class Plateau {
     
     public Plateau(int nbJoueurs, int nbIA, int nivIA) throws Exception
     {
-        pileCartes = new ArrayList();
         historique = new ArrayList();
         joueurs = new ArrayList();
         
@@ -67,10 +66,113 @@ public class Plateau {
                     break;
             }
         }
+        randomPileCartes();
+    }
+    
+    private void randomPileCartes()
+    {
+        pileCartes = new ArrayList();
+        for(int i=1; i<=10; i++)
+        {
+            pileCartes.add(new CarteEffet(i, TypeCarte.Souris));
+        }
+        for(int i=-5; i<=-1; i++)
+        {
+            pileCartes.add(new CarteEffet(i, TypeCarte.Vautour));
+        }
     }
   
-    public void jouerUnTour()
+    public boolean jouerUnTour()
     {
+        if(pileCartes.isEmpty())
+        {
+            return false;
+        }
+
+        ArrayList<TourJoueur> tourActuel = new ArrayList();
+        for (Joueur joueur : joueurs) {
+            tourActuel.add(joueur.jeu());
+        }
+        System.out.println("Fin du tour !");
         
+        CarteEffet carteTour = pileCartes.remove(0);
+        if(carteTour.getTypeCarte().equals(TypeCarte.Souris))
+        {
+            joueurs.get(joueurGagnantTour(tourActuel)).ramasserCarte(carteTour);
+        }
+        else
+        {
+            joueurs.get(joueurPerdantTour(tourActuel)).ramasserCarte(carteTour);
+        }
+        
+        for (TourJoueur tour : tourActuel)
+        {
+            historique.add(tour);
+        }
+        return true;
+    }
+
+    private int joueurGagnantTour(ArrayList<TourJoueur> tourActuel) {
+        ArrayList<TourJoueur> tourCartesValides = new ArrayList();
+        for(TourJoueur tour : tourActuel) //recopie
+        {
+            tourCartesValides.add(tour);
+        }
+        boolean continuer = true;
+        int max=0, numJoueurMax = 0;
+        while(continuer)
+        {
+            max = 0; numJoueurMax = 0;
+            continuer = false;
+            for(int i=0; i<tourCartesValides.size(); i++)
+            {
+                if(tourCartesValides.get(i).getNumCarteJouee()==max)
+                {
+                    tourCartesValides.remove(i);
+                    tourCartesValides.remove(new TourJoueur(numJoueurMax, max));
+                    continuer = true;
+                    break;
+                }
+                if(tourCartesValides.get(i).getNumCarteJouee()>max)
+                {
+                    max = tourCartesValides.get(i).getNumCarteJouee();
+                    numJoueurMax = tourCartesValides.get(i).getNumJoueur();
+                }
+                
+            }
+        }
+        return numJoueurMax;
+    }
+
+    private int joueurPerdantTour(ArrayList<TourJoueur> tourActuel) {
+        ArrayList<TourJoueur> tourCartesValides = new ArrayList();
+        for(TourJoueur tour : tourActuel) //recopie
+        {
+            tourCartesValides.add(tour);
+        }
+        boolean continuer = true;
+        int min=16, numJoueurMax = 0;
+        while(continuer)
+        {
+            min = 16; numJoueurMax = 0;
+            continuer = false;
+            for(int i=0; i<tourCartesValides.size(); i++)
+            {
+                if(tourCartesValides.get(i).getNumCarteJouee()==min)
+                {
+                    tourCartesValides.remove(i);
+                    tourCartesValides.remove(new TourJoueur(numJoueurMax, min));
+                    continuer = true;
+                    break;
+                }
+                if(tourCartesValides.get(i).getNumCarteJouee()<min)
+                {
+                    min = tourCartesValides.get(i).getNumCarteJouee();
+                    numJoueurMax = tourCartesValides.get(i).getNumJoueur();
+                }
+                
+            }
+        }
+        return numJoueurMax;
     }
 }
