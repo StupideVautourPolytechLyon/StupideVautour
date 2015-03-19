@@ -5,6 +5,8 @@
  */
 package stupidevautour;
 
+import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -12,15 +14,17 @@ import java.util.ArrayList;
  * @author Bertrand
  */
 public abstract class Joueur {
-    private int numero;
-    private Plateau plateau;
-    private ArrayList<CarteEffet> cartesEffet;
-    private ArrayList<CarteNumero> cartesJeu;
+    protected int numero;
+    protected Plateau plateau;
+    protected Color couleur;
+    protected ArrayList<CarteEffet> cartesEffet;
+    protected ArrayList<CarteNumero> cartesJeu;
     
-    public Joueur(int numero, ArrayList<CarteNumero> cartesJeu, Plateau plateau)
+    public Joueur(int numero,Color couleur, ArrayList<CarteNumero> cartesJeu, Plateau plateau)
     {
         this.numero = numero;
         this.plateau = plateau;
+        this.couleur= couleur;
         this.cartesJeu = cartesJeu;
         cartesEffet = new ArrayList();
     }
@@ -53,5 +57,5 @@ public abstract class Joueur {
         return cartesJeu;
     }
     
-    public abstract TourJoueur jeu();
+    public abstract TourJoueur jeu() throws IOException;
 }
