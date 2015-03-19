@@ -5,6 +5,8 @@
  */
 package stupidevautour;
 
+import java.awt.Color;
+import static java.lang.Math.random;
 import java.util.ArrayList;
 
 /**
@@ -13,8 +15,22 @@ import java.util.ArrayList;
  */
 public class IAFacile extends Joueur {
 
-    public IAFacile(int numero, ArrayList<CarteNumero> cartesJeu, Plateau plateau) {
-        super(numero, cartesJeu, plateau);
+    public IAFacile(int numero, Color couleur, ArrayList<CarteNumero> cartesJeu, Plateau plateau) {
+        super(numero, couleur, cartesJeu, plateau);
+    }
+    
+    @Override
+    public TourJoueur jeu(){
+        boolean continuer = true;
+        while(continuer){
+            int carteJouee=Math.random();
+            if (cartesJeu.contains(new CarteNumero(carteJouee,couleur))){
+                cartesJeu.remove(new CarteNumero(carteJouee,couleur));
+                return new TourJoueur(numero,carteJouee);
+            }
+            else System.out.print("Cette carte n'est pas dans votre jeu.");
+        }
+       return new TourJoueur(numero,0);
     }
     
 }

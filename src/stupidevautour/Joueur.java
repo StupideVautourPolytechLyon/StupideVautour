@@ -58,4 +58,8 @@ public abstract class Joueur {
     }
     
     public abstract TourJoueur jeu() throws IOException;
+    
+    public void ramasserCarte(CarteEffet carte){
+       cartesEffet.add(carte);
+    }
 }

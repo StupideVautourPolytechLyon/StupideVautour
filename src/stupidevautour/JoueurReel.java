@@ -43,8 +43,5 @@ public class JoueurReel extends Joueur{
        return new TourJoueur(numero,0);
     }
     
-    public void ramasserCarte(CarteEffet carte){
-        cartesEffet.add(carte);
-    }
     
 }
