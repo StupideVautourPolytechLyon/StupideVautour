@@ -53,9 +53,5 @@ public abstract class Joueur {
         return cartesJeu;
     }
     
-    public TourJoueur jeu()
-    {
-        
-        return new TourJoueur();
-    }
+    public abstract TourJoueur jeu();
 }

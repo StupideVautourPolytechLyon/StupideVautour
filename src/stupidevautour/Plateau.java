@@ -7,7 +7,6 @@ package stupidevautour;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  *
@@ -20,6 +19,10 @@ public class Plateau {
     
     public Plateau(int nbJoueurs, int nbIA, int nivIA) throws Exception
     {
+        pileCartes = new ArrayList();
+        historique = new ArrayList();
+        joueurs = new ArrayList();
+        
         if((nbJoueurs + nbIA)<2 || (nbJoueurs + nbIA)>5)
         {
             throw new Exception("Le nombre de joueurs doit être compris entre 2 et 5");
@@ -63,9 +66,11 @@ public class Plateau {
                     joueurs.add(new IADifficile(i+1, cartesJeu, this));
                     break;
             }
-            
         }
     }
-    
-    
+  
+    public void jouerUnTour()
+    {
+        
+    }
 }
