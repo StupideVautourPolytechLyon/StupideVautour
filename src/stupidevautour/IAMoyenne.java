@@ -5,10 +5,16 @@
  */
 package stupidevautour;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Bertrand
  */
-public class Tour {
+public class IAMoyenne extends Joueur{
+
+    public IAMoyenne(int numero, ArrayList<CarteNumero> cartesJeu, Plateau plateau) {
+        super(numero, cartesJeu, plateau);
+    }
     
 }

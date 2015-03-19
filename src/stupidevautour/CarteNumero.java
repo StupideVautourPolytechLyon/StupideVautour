@@ -14,7 +14,13 @@ import java.awt.Color;
 public class CarteNumero {
     private int valeur;
     private Color couleur;
-
+    
+    public CarteNumero(int valeur, Color couleur)
+    {
+        this.valeur = valeur;
+        this.couleur = couleur;
+    }
+    
     /**
      * @return the valeur
      */

@@ -5,23 +5,24 @@
  */
 package stupidevautour;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 /**
  *
  * @author Bertrand
  */
-public class Joueur {
+public abstract class Joueur {
     private int numero;
     private Plateau plateau;
     private ArrayList<CarteEffet> cartesEffet;
     private ArrayList<CarteNumero> cartesJeu;
     
-    public Joueur(int numero, ArrayList<CarteNumero> cartesJeu)
+    public Joueur(int numero, ArrayList<CarteNumero> cartesJeu, Plateau plateau)
     {
         this.numero = numero;
+        this.plateau = plateau;
         this.cartesJeu = cartesJeu;
+        cartesEffet = new ArrayList();
     }
     
     /**
@@ -50,5 +51,11 @@ public class Joueur {
      */
     public ArrayList<CarteNumero> getCartesJeu() {
         return cartesJeu;
+    }
+    
+    public TourJoueur jeu()
+    {
+        
+        return new TourJoueur();
     }
 }

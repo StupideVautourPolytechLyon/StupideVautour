@@ -12,7 +12,13 @@ package stupidevautour;
 public class CarteEffet {
     private int valEffet;
     private TypeCarte typeCarte;
-
+    
+    public CarteEffet(int valEffet, TypeCarte typeCarte)
+    {
+        this.valEffet = valEffet;
+        this.typeCarte = typeCarte;
+    }
+    
     /**
      * @return the valEffet
      */
