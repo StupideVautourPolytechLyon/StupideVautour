@@ -42,6 +42,4 @@ public class JoueurReel extends Joueur{
         } 
        return new TourJoueur(numero,0);
     }
-    
-    
 }

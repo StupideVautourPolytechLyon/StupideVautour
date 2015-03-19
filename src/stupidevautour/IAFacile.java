@@ -6,6 +6,8 @@
 package stupidevautour;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import static java.lang.Math.random;
 import java.util.ArrayList;
 
