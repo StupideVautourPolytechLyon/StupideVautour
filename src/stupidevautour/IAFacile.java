@@ -23,16 +23,10 @@ public class IAFacile extends Joueur {
     
     @Override
     public TourJoueur jeu(){
-        boolean continuer = true;
-        while(continuer){
-            int carteJouee=Math.random();
-            if (cartesJeu.contains(new CarteNumero(carteJouee,couleur))){
-                cartesJeu.remove(new CarteNumero(carteJouee,couleur));
-                return new TourJoueur(numero,carteJouee);
-            }
-            else System.out.print("Cette carte n'est pas dans votre jeu.");
-        }
-       return new TourJoueur(numero,0);
+            int carteJouee=Integer.parseInt(Double.toString(Math.random()*cartesJeu.size()));
+            TourJoueur tour_envoye = new TourJoueur(numero,cartesJeu.get(carteJouee).getValeur());
+            cartesJeu.remove(new CarteNumero(carteJouee,couleur));
+            return tour_envoye;
     }
     
 }
