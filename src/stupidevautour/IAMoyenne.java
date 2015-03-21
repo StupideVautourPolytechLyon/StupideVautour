@@ -5,6 +5,7 @@
  */
 package stupidevautour;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -13,8 +14,8 @@ import java.util.ArrayList;
  */
 public class IAMoyenne extends Joueur{
 
-    public IAMoyenne(int numero, ArrayList<CarteNumero> cartesJeu, Plateau plateau) {
-        super(numero, cartesJeu, plateau);
+    public IAMoyenne(int numero, Color couleur, ArrayList<CarteNumero> cartesJeu, Plateau plateau) {
+        super(numero, couleur, cartesJeu, plateau);
     }
 
     @Override

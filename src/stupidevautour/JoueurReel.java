@@ -27,7 +27,7 @@ public class JoueurReel extends Joueur{
         
         System.out.println("Voici la liste de vos cartes : ");
         for (CarteNumero cartesJeu1 : cartesJeu) {
-            System.out.print(" " + cartesJeu1 + " ");
+            System.out.print(" " + cartesJeu1.getValeur() + " ");
         }
         boolean continuer = true;
         while(continuer){

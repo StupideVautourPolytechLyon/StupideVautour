@@ -6,6 +6,7 @@
 package stupidevautour;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -39,11 +40,11 @@ public class Plateau {
         for(int i=0; i<nbJoueurs; i++)
         {
             ArrayList<CarteNumero> cartesJeu = new ArrayList();
-            for(int j=0; j<15; j++)
+            for(int j=1; j<16; j++)
             {
                 cartesJeu.add(new CarteNumero(j, couleurs.get(i)));
             }
-            joueurs.add(new JoueurReel(i+1, cartesJeu, this));
+            joueurs.add(new JoueurReel(i+1, couleurs.get(i), cartesJeu, this));
         }
         
         for(int i=nbJoueurs; i<(nbIA+nbJoueurs); i++)
@@ -56,13 +57,13 @@ public class Plateau {
             switch (nivIA)
             {
                 case 0:
-                    joueurs.add(new IAFacile(i+1, cartesJeu, this));
+                    joueurs.add(new IAFacile(i+1, couleurs.get(i), cartesJeu, this));
                     break;
                 case 1:
-                    joueurs.add(new IAMoyenne(i+1, cartesJeu, this));
+                    joueurs.add(new IAMoyenne(i+1, couleurs.get(i), cartesJeu, this));
                     break;
                 case 2:
-                    joueurs.add(new IADifficile(i+1, cartesJeu, this));
+                    joueurs.add(new IADifficile(i+1, couleurs.get(i), cartesJeu, this));
                     break;
             }
         }
@@ -82,20 +83,22 @@ public class Plateau {
         }
     }
   
-    public boolean jouerUnTour()
+    public boolean jouerUnTour() throws IOException
     {
         if(pileCartes.isEmpty())
         {
             return false;
         }
-
+        CarteEffet carteTour = pileCartes.remove(0);
+        System.out.println("La carte tirée est une carte "+carteTour.getTypeCarte().toString()+" "+carteTour.getValEffet());
+        
         ArrayList<TourJoueur> tourActuel = new ArrayList();
         for (Joueur joueur : joueurs) {
             tourActuel.add(joueur.jeu());
         }
         System.out.println("Fin du tour !");
         
-        CarteEffet carteTour = pileCartes.remove(0);
+        
         if(carteTour.getTypeCarte().equals(TypeCarte.Souris))
         {
             joueurs.get(joueurGagnantTour(tourActuel)).ramasserCarte(carteTour);

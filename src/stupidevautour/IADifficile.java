@@ -5,6 +5,7 @@
  */
 package stupidevautour;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -13,8 +14,8 @@ import java.util.ArrayList;
  */
 public class IADifficile extends Joueur{
 
-    public IADifficile(int numero, ArrayList<CarteNumero> cartesJeu, Plateau plateau) {
-        super(numero, cartesJeu, plateau);
+    public IADifficile(int numero, Color couleur, ArrayList<CarteNumero> cartesJeu, Plateau plateau) {
+        super(numero, couleur, cartesJeu, plateau);
     }
 
     @Override
