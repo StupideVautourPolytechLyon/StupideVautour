@@ -15,7 +15,7 @@ public class StupideVautour {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        Plateau jeu = new Plateau(2, 1, 1);
+        Plateau jeu = new Plateau(1, 1, 0);
         while(jeu.jouerUnTour())
         {
             

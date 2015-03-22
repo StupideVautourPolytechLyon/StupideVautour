@@ -89,6 +89,7 @@ public class Plateau {
         {
             return false;
         }
+        System.out.println();
         CarteEffet carteTour = pileCartes.remove(0);
         System.out.println("La carte tirée est une carte "+carteTour.getTypeCarte().toString()+" "+carteTour.getValEffet());
         
@@ -97,20 +98,35 @@ public class Plateau {
             tourActuel.add(joueur.jeu());
         }
         System.out.println("Fin du tour !");
-        
+        System.out.println();
+        for(TourJoueur tour : tourActuel)
+        {
+            System.out.println("Le joueur n°"+tour.getNumJoueur()+" a joué sa carte n°"+tour.getNumCarteJouee());
+        }
         
         if(carteTour.getTypeCarte().equals(TypeCarte.Souris))
         {
-            joueurs.get(joueurGagnantTour(tourActuel)).ramasserCarte(carteTour);
+            int joueurGagnantTour = joueurGagnantTour(tourActuel);
+            joueurs.get(joueurGagnantTour-1).ramasserCarte(carteTour);
+            System.out.println("Le joueur ramassant la carte souris de ce tour est le joueur n°"+joueurGagnantTour+".");
         }
         else
         {
-            joueurs.get(joueurPerdantTour(tourActuel)).ramasserCarte(carteTour);
+            int joueurPerdantTour = joueurPerdantTour(tourActuel);
+            joueurs.get(joueurPerdantTour-1).ramasserCarte(carteTour);
+            System.out.println("Le joueur ramassant la carte vautour de ce tour est le joueur n°"+joueurPerdantTour+".");
         }
         
         for (TourJoueur tour : tourActuel)
         {
             historique.add(tour);
+        }
+        
+        System.out.println();
+        System.out.println("Récapitulatif des scores :");
+        for(Joueur j : joueurs)
+        {
+            System.out.println("Le joueur n°"+j.getNumero()+" a "+j.getScore()+" points.");
         }
         return true;
     }

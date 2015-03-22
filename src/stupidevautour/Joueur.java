@@ -62,4 +62,14 @@ public abstract class Joueur {
     public void ramasserCarte(CarteEffet carte){
        cartesEffet.add(carte);
     }
+
+    public int getScore() {
+        int res = 0;
+        for(CarteEffet carte : cartesEffet)
+        {
+            res += carte.getValEffet();
+        }
+        
+        return res;
+    }
 }
