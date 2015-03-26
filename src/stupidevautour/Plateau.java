@@ -8,6 +8,7 @@ package stupidevautour;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -81,7 +82,7 @@ public class Plateau {
         {
             pileCartes.add(new CarteEffet(i, TypeCarte.Vautour));
         }
-        
+        Collections.shuffle(pileCartes);
          
     }
   
