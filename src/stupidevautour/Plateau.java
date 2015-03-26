@@ -81,6 +81,8 @@ public class Plateau {
         {
             pileCartes.add(new CarteEffet(i, TypeCarte.Vautour));
         }
+        
+         
     }
   
     public boolean jouerUnTour() throws IOException
