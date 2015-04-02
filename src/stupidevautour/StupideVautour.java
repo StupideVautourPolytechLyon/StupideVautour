@@ -13,9 +13,15 @@ public class StupideVautour {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
         Plateau jeu = new Plateau(1, 1, 0);
+        FenetrePrincipale fp = new FenetrePrincipale();
+        //fp.setContentPane(new PanelStart(fp));
+        fp.setContentPane(new TourJoueurReel(fp, jeu.joueurs.get(0)));
+        fp.setVisible(true);
+        
         while(jeu.jouerUnTour())
         {
             
