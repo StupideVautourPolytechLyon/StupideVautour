@@ -51,7 +51,7 @@ public class Plateau {
         for(int i=nbJoueurs; i<(nbIA+nbJoueurs); i++)
         {
             ArrayList<CarteNumero> cartesJeu = new ArrayList();
-            for(int j=0; j<15; j++)
+            for(int j=1; j<16; j++)
             {
                 cartesJeu.add(new CarteNumero(j, couleurs.get(i)));
             }
@@ -93,7 +93,7 @@ public class Plateau {
             return false;
         }
         System.out.println();
-        CarteEffet carteTour = pileCartes.remove(0);
+        CarteEffet carteTour = pileCartes.get(0);
         System.out.println("La carte tirée est une carte "+carteTour.getTypeCarte().toString()+" "+carteTour.getValEffet());
         
         ArrayList<TourJoueur> tourActuel = new ArrayList();
@@ -110,12 +110,40 @@ public class Plateau {
         if(carteTour.getTypeCarte().equals(TypeCarte.Souris))
         {
             int joueurGagnantTour = joueurGagnantTour(tourActuel);
+            if (joueurGagnantTour==-1){     //Egalite entre tous les joueurs
+                System.out.println("Egalite entre tous les joueurs ! On recommence le tour.");
+                return jouerUnTour();
+            }
+            for (int i=0; i<joueurs.size();i++) {   //On retire la carte jouée par le joueur de sa liste de cartes
+                ArrayList<CarteNumero> listeTemp = new ArrayList();
+                for(CarteNumero carteNum : joueurs.get(i).getCartesJeu()){
+                    if(carteNum.getValeur()!=tourActuel.get(i).getNumCarteJouee()){
+                        listeTemp.add(carteNum);
+                    }
+                }
+                //listeTemp.remove(new CarteNumero(tourActuel.get(i).getNumCarteJouee(),joueurs.get(i).couleur));
+                joueurs.get(i).setCartesJeu(listeTemp);
+            }
             joueurs.get(joueurGagnantTour-1).ramasserCarte(carteTour);
             System.out.println("Le joueur ramassant la carte souris de ce tour est le joueur n°"+joueurGagnantTour+".");
         }
         else
         {
             int joueurPerdantTour = joueurPerdantTour(tourActuel);
+            if (joueurPerdantTour==-1){     //Egalite entre tous les joueurs
+                System.out.println("Egalite entre tous les joueurs ! On recommence le tour.");
+                return jouerUnTour();
+            }
+            for (int i=0; i<joueurs.size();i++) {   //On retire la carte jouée par le joueur de sa liste de cartes
+                ArrayList<CarteNumero> listeTemp = new ArrayList();
+                for(CarteNumero carteNum : joueurs.get(i).getCartesJeu()){
+                    if(carteNum.getValeur()!=tourActuel.get(i).getNumCarteJouee()){
+                        listeTemp.add(carteNum);
+                    }
+                }
+                //listeTemp.remove(new CarteNumero(tourActuel.get(i).getNumCarteJouee(),joueurs.get(i).couleur));
+                joueurs.get(i).setCartesJeu(listeTemp);
+            }
             joueurs.get(joueurPerdantTour-1).ramasserCarte(carteTour);
             System.out.println("Le joueur ramassant la carte vautour de ce tour est le joueur n°"+joueurPerdantTour+".");
         }
@@ -124,6 +152,7 @@ public class Plateau {
         {
             historique.add(tour);
         }
+        pileCartes.remove(0);
         
         System.out.println();
         System.out.println("Récapitulatif des scores :");
@@ -140,8 +169,8 @@ public class Plateau {
         {
             tourCartesValides.add(tour);
         }
-        boolean continuer = true;
-        int max=0, numJoueurMax = 0;
+        boolean continuer = true; boolean egalite = false;
+        int max=0, numJoueurMax = 0; int numTourMax=0;
         while(continuer)
         {
             max = 0; numJoueurMax = 0;
@@ -150,8 +179,8 @@ public class Plateau {
             {
                 if(tourCartesValides.get(i).getNumCarteJouee()==max)
                 {
+                    egalite=true;  //On signale l'egalite pour pouvoir supprimer le tour du joueur max
                     tourCartesValides.remove(i);
-                    tourCartesValides.remove(new TourJoueur(numJoueurMax, max));
                     continuer = true;
                     break;
                 }
@@ -159,10 +188,17 @@ public class Plateau {
                 {
                     max = tourCartesValides.get(i).getNumCarteJouee();
                     numJoueurMax = tourCartesValides.get(i).getNumJoueur();
+                    numTourMax=i;
                 }
-                
+            }
+            
+            if (egalite){   //Suppression du tour du joueur max
+                    tourCartesValides.remove(numTourMax);
+                    continuer = true;
+                    break;
             }
         }
+        if (tourCartesValides.isEmpty()) return -1;
         return numJoueurMax;
     }
 
@@ -172,8 +208,8 @@ public class Plateau {
         {
             tourCartesValides.add(tour);
         }
-        boolean continuer = true;
-        int min=16, numJoueurMax = 0;
+        boolean continuer = true; boolean egalite=false;
+        int min=16, numJoueurMax = 0; int numTourMin=0;
         while(continuer)
         {
             min = 16; numJoueurMax = 0;
@@ -182,8 +218,8 @@ public class Plateau {
             {
                 if(tourCartesValides.get(i).getNumCarteJouee()==min)
                 {
+                    egalite=true;  //On signale l'egalite pour pouvoir supprimer le tour du joueur max
                     tourCartesValides.remove(i);
-                    tourCartesValides.remove(new TourJoueur(numJoueurMax, min));
                     continuer = true;
                     break;
                 }
@@ -191,10 +227,18 @@ public class Plateau {
                 {
                     min = tourCartesValides.get(i).getNumCarteJouee();
                     numJoueurMax = tourCartesValides.get(i).getNumJoueur();
+                    numTourMin=i;
                 }
-                
+            }
+            if (egalite){   //Suppression du tour du joueur max
+                    tourCartesValides.remove(numTourMin);
+                    continuer = true;
+                    break;
             }
         }
+        if (tourCartesValides.isEmpty()) return -1;
         return numJoueurMax;
     }
+    
+    
 }

@@ -57,6 +57,10 @@ public abstract class Joueur {
         return cartesJeu;
     }
     
+    public void setCartesJeu(ArrayList<CarteNumero> cartesJeu) {
+        this.cartesJeu=cartesJeu;
+    }
+    
     public abstract TourJoueur jeu() throws IOException;
     
     public void ramasserCarte(CarteEffet carte){

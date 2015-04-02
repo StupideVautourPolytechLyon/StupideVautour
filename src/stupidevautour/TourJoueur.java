@@ -12,7 +12,7 @@ package stupidevautour;
 public class TourJoueur {
     private int numJoueur;
     private int numCarteJouee;
-    
+
     public TourJoueur(int numJoueur, int numCarteJouee)
     {
         this.numJoueur = numJoueur;
@@ -32,4 +32,5 @@ public class TourJoueur {
     public int getNumCarteJouee() {
         return numCarteJouee;
     }
+    
 }

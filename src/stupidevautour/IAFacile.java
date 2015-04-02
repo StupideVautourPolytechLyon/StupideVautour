@@ -23,9 +23,9 @@ public class IAFacile extends Joueur {
     
     @Override
     public TourJoueur jeu(){
-            int carteJouee=(int) Math.round((Math.random()*cartesJeu.size()-1));
+            int carteJouee=(int) Math.round(Math.random()*cartesJeu.size())-1;
+            if (carteJouee<0 || carteJouee>cartesJeu.size()-1) return jeu();
             TourJoueur tour_envoye = new TourJoueur(numero,cartesJeu.get(carteJouee).getValeur());
-            cartesJeu.remove(new CarteNumero(carteJouee,couleur));
             return tour_envoye;
     }
     

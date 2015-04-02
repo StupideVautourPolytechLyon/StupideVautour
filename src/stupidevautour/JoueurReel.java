@@ -34,18 +34,17 @@ public class JoueurReel extends Joueur{
             System.out.println("\n Choisissez une carte à jouer pour ce tour :");
             BufferedReader entree = new BufferedReader(new InputStreamReader(System.in));
             int carteJouee = Integer.parseInt(entree.readLine());
-            int posCarteContient = -1;
+            int posCarteExiste = -1;
             for(int i=0; i<cartesJeu.size(); i++)
             {
                 if(cartesJeu.get(i).getValeur() == carteJouee)
                 {
-                    posCarteContient = i;
+                    posCarteExiste = i;
                 }
             }
             
             
-            if (posCarteContient != -1){
-                cartesJeu.remove(posCarteContient);
+            if (posCarteExiste != -1){
                 return new TourJoueur(numero,carteJouee);
             }
             else System.out.print("Cette carte n'est pas dans votre jeu.");
