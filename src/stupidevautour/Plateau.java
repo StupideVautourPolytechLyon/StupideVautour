@@ -90,7 +90,7 @@ public class Plateau {
     {
         if(joueurs.get(0).getCartesJeu().isEmpty())    //Fin du jeu : affichage de scores
         {
-            System.out.println("Fin de la partie !\nClassement des joueurs :");
+            System.out.println("\nFin de la partie !\nClassement des joueurs :");
             int max=0; int numJoueurMax=0; ArrayList<Joueur> joueurs2 = joueurs;
             while (!joueurs2.isEmpty()){
                 max=joueurs.get(0).getScore(); numJoueurMax=0;

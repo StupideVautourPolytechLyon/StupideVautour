@@ -5,12 +5,6 @@
  */
 package stupidevautour;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
 /**
  *
  * @author Bertrand
@@ -18,7 +12,6 @@ import javax.swing.JPanel;
 public class TourJoueurReel extends javax.swing.JPanel {
     FenetrePrincipale fen;
     Joueur joueur;
-    ArrayList<JButton> boutonsCartes;
     /**
      * Creates new form TourJoueurReel
      * @param fen
@@ -33,32 +26,7 @@ public class TourJoueurReel extends javax.swing.JPanel {
     
     private void initialiser()
     {
-        boutonsCartes = new ArrayList();
-        for(CarteNumero carteNum : joueur.getCartesJeu())
-            boutonsCartes.add(new JButton(Integer.toString(carteNum.getValeur())));
         
-        
-        if(joueur instanceof JoueurReel)
-        {
-            
-            panelCouleurJoueur = new JPanel(new GridBagLayout());
-            panelCouleurJoueur.setBackground(joueur.couleur);
-            GridBagConstraints c = new GridBagConstraints();
-            c.gridy=0;
-            for(int i=0; i<boutonsCartes.size(); i++)
-            {
-                System.out.println("a");
-                c.gridx = i;
-                panelCouleurJoueur.add(boutonsCartes.get(i), c);
-            }
-            panelCouleurJoueur.revalidate(); 
-            panelCouleurJoueur.repaint();
-                
-        }
-        else
-        {
-            panelCouleurJoueur.setBackground(joueur.couleur);
-        }
     }
 
     /**
@@ -71,18 +39,32 @@ public class TourJoueurReel extends javax.swing.JPanel {
     private void initComponents() {
 
         panelCouleurJoueur = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 102, 0));
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jButton4.setText("1");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCouleurJoueurLayout = new javax.swing.GroupLayout(panelCouleurJoueur);
         panelCouleurJoueur.setLayout(panelCouleurJoueurLayout);
         panelCouleurJoueurLayout.setHorizontalGroup(
             panelCouleurJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 909, Short.MAX_VALUE)
+            .addGroup(panelCouleurJoueurLayout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1023, Short.MAX_VALUE))
         );
         panelCouleurJoueurLayout.setVerticalGroup(
             panelCouleurJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCouleurJoueurLayout.createSequentialGroup()
+                .addGap(0, 81, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -94,13 +76,17 @@ public class TourJoueurReel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 293, Short.MAX_VALUE)
+                .addGap(0, 207, Short.MAX_VALUE)
                 .addComponent(panelCouleurJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel panelCouleurJoueur;
     // End of variables declaration//GEN-END:variables
 }
