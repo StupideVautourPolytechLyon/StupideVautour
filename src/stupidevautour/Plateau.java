@@ -18,9 +18,11 @@ public class Plateau {
     public ArrayList<Joueur> joueurs;
     private ArrayList<TourJoueur> historique;
     private ArrayList<CarteEffet> pileCartes;
+    private FenetrePrincipale fen;
     
-    public Plateau(int nbJoueurs, int nbIA, int nivIA) throws Exception
+    public Plateau(FenetrePrincipale fen, int nbJoueurs, int nbIA, int nivIA) throws Exception
     {
+        this.fen = fen;
         historique = new ArrayList();
         joueurs = new ArrayList();
         
@@ -90,6 +92,7 @@ public class Plateau {
     {
         if(joueurs.get(0).getCartesJeu().isEmpty())    //Fin du jeu : affichage de scores
         {
+            String res = "\nFin de la partie !\nClassement des joueurs :";
             System.out.println("\nFin de la partie !\nClassement des joueurs :");
             int max=0; int numJoueurMax=0; ArrayList<Joueur> joueurs2 = joueurs;
             while (!joueurs2.isEmpty()){
@@ -100,65 +103,80 @@ public class Plateau {
                         numJoueurMax=i;
                     }
                 }
+                res += "Le joueur n°"+joueurs.get(numJoueurMax).getNumero()+" a "+max+" points.";
                 System.out.println("Le joueur n°"+joueurs.get(numJoueurMax).getNumero()+" a "+max+" points.");
                 joueurs2.remove(numJoueurMax);
             }
+            fen.recapTour = res;
             return false;
         }
+        
+        
+        
+        
         System.out.println();
         CarteEffet carteTour = pileCartes.get(0);
         System.out.println("La carte tirée est une carte "+carteTour.getTypeCarte().toString()+" "+carteTour.getValEffet());
+        fen.carteTiree = "La carte tirée est une carte "+carteTour.getTypeCarte().toString()+" "+carteTour.getValEffet();
         
         ArrayList<TourJoueur> tourActuel = new ArrayList();
         for (Joueur joueur : joueurs) {
-            tourActuel.add(joueur.jeu());
+            if(joueur instanceof JoueurReel)
+            {
+                TourJoueurReel tjr = new TourJoueurReel(fen, joueur);
+                fen.setContentPane(tjr);
+                tjr.revalidate();
+                tjr.repaint();
+                while(tjr.choixJoueur == -1);
+                tourActuel.add(new TourJoueur(tjr.joueur.getNumero(), tjr.choixJoueur));
+            }
+            else
+            {
+                TourIA tia = new TourIA(joueur);
+                fen.setContentPane(tia);
+                tia.revalidate();
+                tia.repaint();
+                while(tia.choixJoueur == -1);
+                tourActuel.add(new TourJoueur(tia.joueur.getNumero(), tia.choixJoueur));
+            }
+            //tourActuel.add(joueur.jeu(carteTour));
         }
         System.out.println("Fin du tour !");
         System.out.println();
+        
+        
+        
+        String finTour = "";
         for(TourJoueur tour : tourActuel)
         {
+            finTour += "Le joueur n°"+tour.getNumJoueur()+" a joué sa carte n°"+tour.getNumCarteJouee();
             System.out.println("Le joueur n°"+tour.getNumJoueur()+" a joué sa carte n°"+tour.getNumCarteJouee());
         }
+        
         
         if(carteTour.getTypeCarte().equals(TypeCarte.Souris))
         {
             int joueurGagnantTour = joueurGagnantTour(tourActuel);
             if (joueurGagnantTour==-1){     //Egalite entre tous les joueurs
                 System.out.println("Egalite entre tous les joueurs ! On recommence le tour.");
+                finTour += "Egalite entre tous les joueurs ! On recommence le tour.";
                 return jouerUnTour();
             }
-            /*for (int i=0; i<joueurs.size();i++) {   //On retire la carte jouée par le joueur de sa liste de cartes
-                ArrayList<CarteNumero> listeTemp = new ArrayList();
-                for(CarteNumero carteNum : joueurs.get(i).getCartesJeu()){
-                    if(carteNum.getValeur()!=tourActuel.get(i).getNumCarteJouee()){
-                        listeTemp.add(carteNum);
-                    }
-                }
-                //listeTemp.remove(new CarteNumero(tourActuel.get(i).getNumCarteJouee(),joueurs.get(i).couleur));
-                joueurs.get(i).setCartesJeu(listeTemp);
-            }*/
             joueurs.get(joueurGagnantTour-1).ramasserCarte(carteTour);
             System.out.println("Le joueur ramassant la carte souris de ce tour est le joueur n°"+joueurGagnantTour+".");
+            finTour += "Le joueur ramassant la carte souris de ce tour est le joueur n°"+joueurGagnantTour+".";
         }
         else
         {
             int joueurPerdantTour = joueurPerdantTour(tourActuel);
             if (joueurPerdantTour==-1){     //Egalite entre tous les joueurs
                 System.out.println("Egalite entre tous les joueurs ! On recommence le tour.");
+                finTour += "Egalite entre tous les joueurs ! On recommence le tour.";
                 return jouerUnTour();
             }
-            /*for (int i=0; i<joueurs.size();i++) {   //On retire la carte jouée par le joueur de sa liste de cartes
-                ArrayList<CarteNumero> listeTemp = new ArrayList();
-                for(CarteNumero carteNum : joueurs.get(i).getCartesJeu()){
-                    if(carteNum.getValeur()!=tourActuel.get(i).getNumCarteJouee()){
-                        listeTemp.add(carteNum);
-                    }
-                }
-                //listeTemp.remove(new CarteNumero(tourActuel.get(i).getNumCarteJouee(),joueurs.get(i).couleur));
-                joueurs.get(i).setCartesJeu(listeTemp);
-            }*/
             joueurs.get(joueurPerdantTour-1).ramasserCarte(carteTour);
             System.out.println("Le joueur ramassant la carte vautour de ce tour est le joueur n°"+joueurPerdantTour+".");
+            finTour += "Le joueur ramassant la carte vautour de ce tour est le joueur n°"+joueurPerdantTour+".";
         }
         
         for (TourJoueur tour : tourActuel)
@@ -169,10 +187,17 @@ public class Plateau {
         
         System.out.println();
         System.out.println("Récapitulatif des scores :");
+        finTour += "Récapitulatif des scores :";
         for(Joueur j : joueurs)
         {
             System.out.println("Le joueur n°"+j.getNumero()+" a "+j.getScore()+" points.");
+            finTour += "Le joueur n°"+j.getNumero()+" a "+j.getScore()+" points.";
         }
+        fen.recapTour = finTour;
+        RecapTour rec = new RecapTour(finTour);
+        fen.setContentPane(rec);
+        rec.revalidate();
+        rec.repaint();
         return true;
     }
 

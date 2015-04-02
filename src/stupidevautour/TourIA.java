@@ -12,7 +12,9 @@ import java.io.IOException;
  * @author Bertrand
  */
 public class TourIA extends javax.swing.JPanel {
-    Joueur joueur;
+    public Joueur joueur;
+    public int choixJoueur = -1;
+    
     /**
      * Creates new form TourIA
      * @param joueur
@@ -26,20 +28,12 @@ public class TourIA extends javax.swing.JPanel {
     private void initialiser() throws IOException
     {
         labJoueur.setText(" L'IA "+joueur.getNumero()+" est en train de joueur !");
-       /* 
-        int i=0
-        joueurs 2 = joueurs
-        while joueurs2 pas vide
-                for(joueurs)
-                    tire joueur max -> max SI il est dans joueurs2
-                out(i+": "+joueur max)
-                joueurs2. remove(joueurmax)*/
-        
+        jeu();
     }
     
-    private TourJoueur jeu() throws IOException
+    private void jeu() throws IOException
     {
-        return joueur.jeu();
+        choixJoueur =  joueur.jeu().getNumCarteJouee();
     }
 
     /**

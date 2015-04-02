@@ -10,7 +10,11 @@ package stupidevautour;
  * @author Bertrand
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
-
+    public String recapTour = "";
+    public String carteTiree = "";
+    
+    
+    
     /**
      * Creates new form FenetrePrincipale
      */

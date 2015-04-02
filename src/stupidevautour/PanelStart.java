@@ -11,6 +11,7 @@ package stupidevautour;
  */
 public class PanelStart extends javax.swing.JPanel {
     FenetrePrincipale fen;
+    
     /**
      * Creates new form PanelStart
      */

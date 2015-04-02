@@ -5,6 +5,9 @@
  */
 package stupidevautour;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SpinnerListModel;
 
 /**
@@ -92,6 +95,11 @@ public class PanelAvtPartie extends javax.swing.JPanel {
         buttonLancer.setBackground(new java.awt.Color(51, 102, 0));
         buttonLancer.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         buttonLancer.setText("Lancer la partie !");
+        buttonLancer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLancerActionPerformed(evt);
+            }
+        });
 
         nbJoueurs.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         nbJoueurs.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -146,20 +154,19 @@ public class PanelAvtPartie extends javax.swing.JPanel {
                                 .addComponent(buttonLancer)
                                 .addGap(18, 18, 18)
                                 .addComponent(buttonRetour))
-                            .addComponent(labDiff))))
-                .addContainerGap(389, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labDiff)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labNbIa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nbIA, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(labNbJoueurs)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nbJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(diffIA, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labNbIa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nbIA, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labNbJoueurs)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nbJoueurs, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(diffIA, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -221,6 +228,32 @@ public class PanelAvtPartie extends javax.swing.JPanel {
         pan.revalidate(); 
         pan.repaint();
     }//GEN-LAST:event_buttonRetourActionPerformed
+
+    private void buttonLancerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLancerActionPerformed
+        int diffIA = 0;
+        switch(nbJoueurs.getModel().getValue().toString())
+        {
+            case "Facile" : diffIA = 0; break;
+            case "Moyenne" : diffIA = 1; break;
+            case "Difficile" : diffIA = 2; break;
+        }
+        Plateau p = null;
+        try {
+            p = new Plateau(fen, Integer.parseInt(nbJoueurs.getModel().getValue().toString()), Integer.parseInt(nbIA.getModel().getValue().toString()), diffIA);
+        } catch (Exception ex) {
+            Logger.getLogger(PanelAvtPartie.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(p != null)
+        {
+            try {
+                while(p.jouerUnTour());
+            } catch (IOException ex) {
+                Logger.getLogger(PanelAvtPartie.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
+    }//GEN-LAST:event_buttonLancerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

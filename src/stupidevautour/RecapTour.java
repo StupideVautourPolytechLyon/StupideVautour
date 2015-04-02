@@ -14,8 +14,9 @@ public class RecapTour extends javax.swing.JFrame {
     /**
      * Creates new form RecapTour
      */
-    public RecapTour() {
+    public RecapTour(String recap) {
         initComponents();
+        jLabel1.setText(recap);
     }
 
     /**

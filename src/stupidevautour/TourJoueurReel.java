@@ -10,8 +10,10 @@ package stupidevautour;
  * @author Bertrand
  */
 public class TourJoueurReel extends javax.swing.JPanel {
-    FenetrePrincipale fen;
-    Joueur joueur;
+    private FenetrePrincipale fen;
+    
+    public Joueur joueur;
+    public int choixJoueur = -1;
     /**
      * Creates new form TourJoueurReel
      * @param fen
@@ -81,9 +83,9 @@ public class TourJoueurReel extends javax.swing.JPanel {
         }
     }
     
-    private TourJoueur play(int in)
+    private void play(int in)
     {
-        return new TourJoueur(joueur.getNumero(), in);
+        choixJoueur = in;
     }
 
     /**
