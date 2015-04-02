@@ -15,7 +15,7 @@ import java.util.Collections;
  * @author Bertrand
  */
 public class Plateau {
-    private ArrayList<Joueur> joueurs;
+    public ArrayList<Joueur> joueurs;
     private ArrayList<TourJoueur> historique;
     private ArrayList<CarteEffet> pileCartes;
     
