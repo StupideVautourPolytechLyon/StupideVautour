@@ -31,9 +31,21 @@ public class JoueurReel extends Joueur{
         }
         boolean continuer = true;
         while(continuer){
-            System.out.println("\n Choisissez une carte à jouer pour ce tour :");
+            int carteJouee = 1;
             BufferedReader entree = new BufferedReader(new InputStreamReader(System.in));
-            int carteJouee = Integer.parseInt(entree.readLine());
+            boolean entreeJuste = true;
+            while(entreeJuste)
+            {
+                entreeJuste = false;
+                try {
+                    System.out.println("\n Choisissez une carte à jouer pour ce tour :");
+                    carteJouee = Integer.parseInt(entree.readLine());
+                }catch(Exception e){
+                    System.out.println("Attention : il faut rentrer un chiffre.");
+                    entreeJuste = true;
+                }
+            }
+            
             int posCarteExiste = -1;
             for(int i=0; i<cartesJeu.size(); i++)
             {
@@ -43,8 +55,8 @@ public class JoueurReel extends Joueur{
                 }
             }
             
-            
             if (posCarteExiste != -1){
+                cartesJeu.remove(posCarteExiste);
                 return new TourJoueur(numero,carteJouee);
             }
             else System.out.print("Cette carte n'est pas dans votre jeu.");

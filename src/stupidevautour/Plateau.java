@@ -88,8 +88,21 @@ public class Plateau {
   
     public boolean jouerUnTour() throws IOException
     {
-        if(pileCartes.isEmpty())
+        if(joueurs.get(0).getCartesJeu().isEmpty())    //Fin du jeu : affichage de scores
         {
+            System.out.println("Fin de la partie !\nClassement des joueurs :");
+            int max=0; int numJoueurMax=0; ArrayList<Joueur> joueurs2 = joueurs;
+            while (!joueurs2.isEmpty()){
+                max=joueurs.get(0).getScore(); numJoueurMax=0;
+                for (int i=0;i<joueurs.size();i++){
+                    if (joueurs.get(i).getScore()>max){
+                        max=joueurs.get(i).getScore();
+                        numJoueurMax=i;
+                    }
+                }
+                System.out.println("Le joueur n°"+joueurs.get(numJoueurMax).getNumero()+" a "+max+" points.");
+                joueurs2.remove(numJoueurMax);
+            }
             return false;
         }
         System.out.println();
@@ -114,7 +127,7 @@ public class Plateau {
                 System.out.println("Egalite entre tous les joueurs ! On recommence le tour.");
                 return jouerUnTour();
             }
-            for (int i=0; i<joueurs.size();i++) {   //On retire la carte jouée par le joueur de sa liste de cartes
+            /*for (int i=0; i<joueurs.size();i++) {   //On retire la carte jouée par le joueur de sa liste de cartes
                 ArrayList<CarteNumero> listeTemp = new ArrayList();
                 for(CarteNumero carteNum : joueurs.get(i).getCartesJeu()){
                     if(carteNum.getValeur()!=tourActuel.get(i).getNumCarteJouee()){
@@ -123,7 +136,7 @@ public class Plateau {
                 }
                 //listeTemp.remove(new CarteNumero(tourActuel.get(i).getNumCarteJouee(),joueurs.get(i).couleur));
                 joueurs.get(i).setCartesJeu(listeTemp);
-            }
+            }*/
             joueurs.get(joueurGagnantTour-1).ramasserCarte(carteTour);
             System.out.println("Le joueur ramassant la carte souris de ce tour est le joueur n°"+joueurGagnantTour+".");
         }
@@ -134,7 +147,7 @@ public class Plateau {
                 System.out.println("Egalite entre tous les joueurs ! On recommence le tour.");
                 return jouerUnTour();
             }
-            for (int i=0; i<joueurs.size();i++) {   //On retire la carte jouée par le joueur de sa liste de cartes
+            /*for (int i=0; i<joueurs.size();i++) {   //On retire la carte jouée par le joueur de sa liste de cartes
                 ArrayList<CarteNumero> listeTemp = new ArrayList();
                 for(CarteNumero carteNum : joueurs.get(i).getCartesJeu()){
                     if(carteNum.getValeur()!=tourActuel.get(i).getNumCarteJouee()){
@@ -143,7 +156,7 @@ public class Plateau {
                 }
                 //listeTemp.remove(new CarteNumero(tourActuel.get(i).getNumCarteJouee(),joueurs.get(i).couleur));
                 joueurs.get(i).setCartesJeu(listeTemp);
-            }
+            }*/
             joueurs.get(joueurPerdantTour-1).ramasserCarte(carteTour);
             System.out.println("Le joueur ramassant la carte vautour de ce tour est le joueur n°"+joueurPerdantTour+".");
         }
