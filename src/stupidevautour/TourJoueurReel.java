@@ -26,7 +26,64 @@ public class TourJoueurReel extends javax.swing.JPanel {
     
     private void initialiser()
     {
+        labJoueur.setText(" Joueur "+joueur.getNumero()+", à voous de jouer !");
         
+        buttCarte1.setBackground(joueur.couleur);
+        buttCarte2.setBackground(joueur.couleur);
+        buttCarte3.setBackground(joueur.couleur);
+        buttCarte4.setBackground(joueur.couleur);
+        buttCarte5.setBackground(joueur.couleur);
+        buttCarte6.setBackground(joueur.couleur);
+        buttCarte7.setBackground(joueur.couleur);
+        buttCarte8.setBackground(joueur.couleur);
+        buttCarte9.setBackground(joueur.couleur);
+        buttCarte10.setBackground(joueur.couleur);
+        buttCarte11.setBackground(joueur.couleur);
+        buttCarte12.setBackground(joueur.couleur);
+        buttCarte13.setBackground(joueur.couleur);
+        buttCarte14.setBackground(joueur.couleur);
+        buttCarte15.setBackground(joueur.couleur);
+        
+        buttCarte1.setEnabled(false);
+        buttCarte2.setEnabled(false);
+        buttCarte3.setEnabled(false);
+        buttCarte4.setEnabled(false);
+        buttCarte5.setEnabled(false);
+        buttCarte6.setEnabled(false);
+        buttCarte7.setEnabled(false);
+        buttCarte8.setEnabled(false);
+        buttCarte9.setEnabled(false);
+        buttCarte10.setEnabled(false);
+        buttCarte11.setEnabled(false);
+        buttCarte12.setEnabled(false);
+        buttCarte13.setEnabled(false);
+        buttCarte14.setEnabled(false);
+        buttCarte15.setEnabled(false);
+        
+        for (CarteNumero cartesJeu : joueur.cartesJeu) {
+            switch (cartesJeu.getValeur()) {
+                case 1: buttCarte1.setEnabled(true); break;
+                case 2: buttCarte2.setEnabled(true); break;
+                case 3: buttCarte3.setEnabled(true); break;
+                case 4: buttCarte4.setEnabled(true); break;
+                case 5: buttCarte5.setEnabled(true); break;
+                case 6: buttCarte6.setEnabled(true); break;
+                case 7: buttCarte7.setEnabled(true); break;
+                case 8: buttCarte8.setEnabled(true); break;
+                case 9: buttCarte9.setEnabled(true); break;
+                case 10: buttCarte10.setEnabled(true); break;    
+                case 11: buttCarte11.setEnabled(true); break;
+                case 12: buttCarte12.setEnabled(true); break;
+                case 13: buttCarte13.setEnabled(true); break;
+                case 14: buttCarte14.setEnabled(true); break;
+                case 15: buttCarte15.setEnabled(true); break;    
+            }
+        }
+    }
+    
+    private TourJoueur play(int in)
+    {
+        return new TourJoueur(joueur.getNumero(), in);
     }
 
     /**
@@ -39,15 +96,142 @@ public class TourJoueurReel extends javax.swing.JPanel {
     private void initComponents() {
 
         panelCouleurJoueur = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        buttCarte1 = new javax.swing.JButton();
+        buttCarte2 = new javax.swing.JButton();
+        buttCarte3 = new javax.swing.JButton();
+        buttCarte4 = new javax.swing.JButton();
+        buttCarte5 = new javax.swing.JButton();
+        buttCarte6 = new javax.swing.JButton();
+        buttCarte7 = new javax.swing.JButton();
+        buttCarte8 = new javax.swing.JButton();
+        buttCarte9 = new javax.swing.JButton();
+        buttCarte10 = new javax.swing.JButton();
+        buttCarte11 = new javax.swing.JButton();
+        buttCarte12 = new javax.swing.JButton();
+        buttCarte13 = new javax.swing.JButton();
+        buttCarte14 = new javax.swing.JButton();
+        buttCarte15 = new javax.swing.JButton();
+        labJoueur = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 102, 0));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jButton4.setText("1");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        buttCarte1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte1.setText("1");
+        buttCarte1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                buttCarte1ActionPerformed(evt);
+            }
+        });
+
+        buttCarte2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte2.setText("2");
+        buttCarte2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte2ActionPerformed(evt);
+            }
+        });
+
+        buttCarte3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte3.setText("3");
+        buttCarte3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte3ActionPerformed(evt);
+            }
+        });
+
+        buttCarte4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte4.setText("4");
+        buttCarte4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte4ActionPerformed(evt);
+            }
+        });
+
+        buttCarte5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte5.setText("5");
+        buttCarte5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte5ActionPerformed(evt);
+            }
+        });
+
+        buttCarte6.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte6.setText("6");
+        buttCarte6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte6ActionPerformed(evt);
+            }
+        });
+
+        buttCarte7.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte7.setText("7");
+        buttCarte7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte7ActionPerformed(evt);
+            }
+        });
+
+        buttCarte8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte8.setText("8");
+        buttCarte8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte8ActionPerformed(evt);
+            }
+        });
+
+        buttCarte9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte9.setText("9");
+        buttCarte9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte9ActionPerformed(evt);
+            }
+        });
+
+        buttCarte10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte10.setText("10");
+        buttCarte10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte10ActionPerformed(evt);
+            }
+        });
+
+        buttCarte11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte11.setText("11");
+        buttCarte11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte11ActionPerformed(evt);
+            }
+        });
+
+        buttCarte12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte12.setText("12");
+        buttCarte12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte12ActionPerformed(evt);
+            }
+        });
+
+        buttCarte13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte13.setText("13");
+        buttCarte13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte13ActionPerformed(evt);
+            }
+        });
+
+        buttCarte14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte14.setText("14");
+        buttCarte14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte14ActionPerformed(evt);
+            }
+        });
+
+        buttCarte15.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        buttCarte15.setText("15");
+        buttCarte15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttCarte15ActionPerformed(evt);
             }
         });
 
@@ -56,37 +240,161 @@ public class TourJoueurReel extends javax.swing.JPanel {
         panelCouleurJoueurLayout.setHorizontalGroup(
             panelCouleurJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCouleurJoueurLayout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1023, Short.MAX_VALUE))
+                .addComponent(buttCarte1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte5, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte6, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte7, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte8, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte9, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte10, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte11, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte12, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte13, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte14, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttCarte15, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCouleurJoueurLayout.setVerticalGroup(
             panelCouleurJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCouleurJoueurLayout.createSequentialGroup()
-                .addGap(0, 81, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelCouleurJoueurLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(panelCouleurJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCouleurJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttCarte1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte5, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte7, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte8, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte9, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCouleurJoueurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttCarte10, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte11, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte12, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte13, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte14, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttCarte15, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
+
+        labJoueur.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labJoueur.setForeground(new java.awt.Color(240, 240, 240));
+        labJoueur.setText("Joueur");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelCouleurJoueur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(labJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 207, Short.MAX_VALUE)
+                .addContainerGap(232, Short.MAX_VALUE)
+                .addComponent(labJoueur)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelCouleurJoueur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void buttCarte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte1ActionPerformed
+        play(1);
+    }//GEN-LAST:event_buttCarte1ActionPerformed
+
+    private void buttCarte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte2ActionPerformed
+        play(2);
+    }//GEN-LAST:event_buttCarte2ActionPerformed
+
+    private void buttCarte3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte3ActionPerformed
+        play(3);
+    }//GEN-LAST:event_buttCarte3ActionPerformed
+
+    private void buttCarte4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte4ActionPerformed
+        play(4);
+    }//GEN-LAST:event_buttCarte4ActionPerformed
+
+    private void buttCarte5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte5ActionPerformed
+        play(5);
+    }//GEN-LAST:event_buttCarte5ActionPerformed
+
+    private void buttCarte6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte6ActionPerformed
+        play(6);
+    }//GEN-LAST:event_buttCarte6ActionPerformed
+
+    private void buttCarte7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte7ActionPerformed
+        play(7);
+    }//GEN-LAST:event_buttCarte7ActionPerformed
+
+    private void buttCarte8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte8ActionPerformed
+        play(8);
+    }//GEN-LAST:event_buttCarte8ActionPerformed
+
+    private void buttCarte9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte9ActionPerformed
+        play(9);
+    }//GEN-LAST:event_buttCarte9ActionPerformed
+
+    private void buttCarte10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte10ActionPerformed
+        play(10);
+    }//GEN-LAST:event_buttCarte10ActionPerformed
+
+    private void buttCarte11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte11ActionPerformed
+        play(11);
+    }//GEN-LAST:event_buttCarte11ActionPerformed
+
+    private void buttCarte12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte12ActionPerformed
+        play(12);
+    }//GEN-LAST:event_buttCarte12ActionPerformed
+
+    private void buttCarte13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte13ActionPerformed
+        play(13);
+    }//GEN-LAST:event_buttCarte13ActionPerformed
+
+    private void buttCarte14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte14ActionPerformed
+        play(14);
+    }//GEN-LAST:event_buttCarte14ActionPerformed
+
+    private void buttCarte15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttCarte15ActionPerformed
+        play(15);
+    }//GEN-LAST:event_buttCarte15ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton buttCarte1;
+    private javax.swing.JButton buttCarte10;
+    private javax.swing.JButton buttCarte11;
+    private javax.swing.JButton buttCarte12;
+    private javax.swing.JButton buttCarte13;
+    private javax.swing.JButton buttCarte14;
+    private javax.swing.JButton buttCarte15;
+    private javax.swing.JButton buttCarte2;
+    private javax.swing.JButton buttCarte3;
+    private javax.swing.JButton buttCarte4;
+    private javax.swing.JButton buttCarte5;
+    private javax.swing.JButton buttCarte6;
+    private javax.swing.JButton buttCarte7;
+    private javax.swing.JButton buttCarte8;
+    private javax.swing.JButton buttCarte9;
+    private javax.swing.JLabel labJoueur;
     private javax.swing.JPanel panelCouleurJoueur;
     // End of variables declaration//GEN-END:variables
 }
