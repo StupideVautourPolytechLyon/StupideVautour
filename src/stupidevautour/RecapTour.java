@@ -31,6 +31,7 @@ public class RecapTour extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(51, 102, 0));
 
         jLabel1.setText("jLabel1");
 

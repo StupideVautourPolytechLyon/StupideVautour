@@ -237,17 +237,19 @@ public class PanelAvtPartie extends javax.swing.JPanel {
             case "Moyenne" : diffIA = 1; break;
             case "Difficile" : diffIA = 2; break;
         }
-        Plateau p = null;
+        
         try {
-            p = new Plateau(fen, Integer.parseInt(nbJoueurs.getModel().getValue().toString()), Integer.parseInt(nbIA.getModel().getValue().toString()), diffIA);
+            fen.p = new Plateau(fen, Integer.parseInt(nbJoueurs.getModel().getValue().toString()), Integer.parseInt(nbIA.getModel().getValue().toString()), diffIA);
         } catch (Exception ex) {
             Logger.getLogger(PanelAvtPartie.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(p != null)
+        if(fen.p != null)
         {
             try {
-                while(p.jouerUnTour());
+                while(fen.p.jouerUnTour());
             } catch (IOException ex) {
+                Logger.getLogger(PanelAvtPartie.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
                 Logger.getLogger(PanelAvtPartie.class.getName()).log(Level.SEVERE, null, ex);
             }
             

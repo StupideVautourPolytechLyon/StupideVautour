@@ -20,6 +20,8 @@ public class Plateau {
     private ArrayList<CarteEffet> pileCartes;
     private FenetrePrincipale fen;
     
+    public ArrayList<TourJoueur> tourActuel;
+    
     public Plateau(FenetrePrincipale fen, int nbJoueurs, int nbIA, int nivIA) throws Exception
     {
         this.fen = fen;
@@ -88,7 +90,7 @@ public class Plateau {
          
     }
   
-    public boolean jouerUnTour() throws IOException
+    public boolean jouerUnTour() throws IOException, InterruptedException
     {
         if(joueurs.get(0).getCartesJeu().isEmpty())    //Fin du jeu : affichage de scores
         {
@@ -119,7 +121,7 @@ public class Plateau {
         System.out.println("La carte tirée est une carte "+carteTour.getTypeCarte().toString()+" "+carteTour.getValEffet());
         fen.carteTiree = "La carte tirée est une carte "+carteTour.getTypeCarte().toString()+" "+carteTour.getValEffet();
         
-        ArrayList<TourJoueur> tourActuel = new ArrayList();
+        tourActuel = new ArrayList();
         for (Joueur joueur : joueurs) {
             if(joueur instanceof JoueurReel)
             {
@@ -127,12 +129,11 @@ public class Plateau {
                 fen.setContentPane(tjr);
                 tjr.revalidate();
                 tjr.repaint();
-                while(tjr.choixJoueur == -1);
-                tourActuel.add(new TourJoueur(tjr.joueur.getNumero(), tjr.choixJoueur));
+                while (tjr.choixJoueur == -1);
             }
             else
             {
-                TourIA tia = new TourIA(joueur);
+                TourIA tia = new TourIA(fen, joueur);
                 fen.setContentPane(tia);
                 tia.revalidate();
                 tia.repaint();

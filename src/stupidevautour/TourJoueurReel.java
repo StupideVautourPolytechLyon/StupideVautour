@@ -86,6 +86,7 @@ public class TourJoueurReel extends javax.swing.JPanel {
     private void play(int in)
     {
         choixJoueur = in;
+        fen.p.tourActuel.add(new TourJoueur(joueur.getNumero(), choixJoueur));
     }
 
     /**

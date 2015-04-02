@@ -13,13 +13,16 @@ import java.io.IOException;
  */
 public class TourIA extends javax.swing.JPanel {
     public Joueur joueur;
+    public FenetrePrincipale fen;
     public int choixJoueur = -1;
     
     /**
      * Creates new form TourIA
+     * @param fen
      * @param joueur
      */
-    public TourIA(Joueur joueur) throws IOException {
+    public TourIA(FenetrePrincipale fen, Joueur joueur) throws IOException {
+        this.fen = fen;
         this.joueur = joueur;
         initComponents();
         initialiser();

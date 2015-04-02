@@ -10,6 +10,7 @@ package stupidevautour;
  * @author Bertrand
  */
 public class FenetrePrincipale extends javax.swing.JFrame {
+    Plateau p;
     public String recapTour = "";
     public String carteTiree = "";
     
